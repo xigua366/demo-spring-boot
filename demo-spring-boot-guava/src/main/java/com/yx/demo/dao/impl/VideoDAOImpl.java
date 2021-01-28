@@ -1,6 +1,8 @@
 package com.yx.demo.dao.impl;
 
 import com.yx.demo.dao.VideoDAO;
+import com.yx.demo.model.entity.Chapter;
+import com.yx.demo.model.entity.Episode;
 import com.yx.demo.model.entity.Video;
 import org.springframework.stereotype.Component;
 
@@ -53,8 +55,80 @@ public class VideoDAOImpl implements VideoDAO {
         list.add(video2);
         list.add(video3);
 
-        System.out.println("模拟从数据库查询数据。size:" + list.size());
+        System.out.println("模拟从数据库查询首页视频课程列表数据。size:" + list.size());
 
         return list;
+    }
+
+    @Override
+    public Video findVideoDetailById(Integer videoId) {
+
+//        "id": 40,
+//                "title": "全新微信小程序零基础到项目实战",
+//                "summary": "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/video/2019_frontend/%E5%B0%8F%E7%A8%8B%E5%BA%8F/wx_app_detail.png",
+//                "price": 5980,
+//                "point": 9.1,
+//                "cover_img": "https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/video/2019_frontend/%E5%B0%8F%E7%A8%8B%E5%BA%8F/wxapp.png",
+//                "create_time": "2019-08-19T03:14:00.000+00:00",
+//                "chapter_list": [
+//        {
+//            "id": 370,
+//                "videoId": null,
+//                "title": "走进微信⼩小程序的世界",
+//                "ordered": 1,
+//                "createTime": "2019-09-06T03:39:59.000+00:00",
+//                "episodeList": [
+//            {
+//                "id": 11000,
+//                    "title": "微信小程序课程介绍",
+//                    "num": 1,
+//                    "ordered": 1,
+//                    "free": 0,
+//                    "play_url": "xdclass.net/aaa.mp4",
+//                    "chapter_id": null,
+//                    "video_id": null,
+//                    "create_time": null
+//            }
+//                ]
+//        }
+
+        Video video = new Video();
+        video.setId(videoId);
+        video.setTitle("全新微信小程序零基础到项目实战");
+        video.setSummary("https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/video/2019_frontend/%E5%B0%8F%E7%A8%8B%E5%BA%8F/wx_app_detail.png");
+        video.setPrice(5980);
+        video.setPoint(9.1);
+        video.setCoverImg("https://xd-video-pc-img.oss-cn-beijing.aliyuncs.com/xdclass_pro/video/2019_frontend/%E5%B0%8F%E7%A8%8B%E5%BA%8F/wxapp.png");
+        video.setCreateTime(new Date());
+
+        List<Chapter> chapterList = new ArrayList<>();
+        Chapter chapter1 = new Chapter();
+        chapter1.setId(370);
+        chapter1.setVideoId(videoId);
+        chapter1.setTitle("走进微信⼩小程序的世界");
+        chapter1.setOrdered(1);
+        chapter1.setCreateTime(new Date());
+
+        List<Episode> episodeList = new ArrayList<>();
+        Episode episode1 = new Episode();
+        episode1.setId(11000);
+        episode1.setTitle("微信小程序课程介绍");
+        episode1.setNum(1);
+        episode1.setOrdered(1);
+        episode1.setFree(0);
+        episode1.setPlayUrl("xdclass.net/aaa.mp4");
+        episode1.setChapterId(chapter1.getId());
+        episode1.setVideoId(videoId);
+        episode1.setCreateTime(new Date());
+        episodeList.add(episode1);
+        chapter1.setEpisodeList(episodeList);
+
+        chapterList.add(chapter1);
+
+        video.setChapterList(chapterList);
+
+        System.out.println("模拟从数据库查询视频课程详情。videoId:" + videoId);
+
+        return video;
     }
 }

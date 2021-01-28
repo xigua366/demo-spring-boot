@@ -1,5 +1,7 @@
 package com.yx.demo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
@@ -14,6 +16,7 @@ public class VideoBanner {
 
     private String img;
 
+    @JsonProperty("create_time")
     private Date createTime;
 
     private Integer weight;

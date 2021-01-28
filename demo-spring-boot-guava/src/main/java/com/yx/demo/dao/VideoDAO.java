@@ -12,4 +12,5 @@ public interface VideoDAO {
 
     List<Video> list();
 
+    Video findVideoDetailById(Integer videoId);
 }
