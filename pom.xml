@@ -26,6 +26,7 @@
 
 	<modules>
 		<module>demo-spring-boot-guava</module>
+		<module>demo-spring-boot-lombok</module>
 	</modules>
 
 	<repositories>
