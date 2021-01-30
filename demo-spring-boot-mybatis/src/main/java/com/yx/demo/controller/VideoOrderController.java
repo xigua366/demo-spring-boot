@@ -1,0 +1,51 @@
+package com.yx.demo.controller;
+
+import com.yx.demo.model.entity.VideoOrder;
+import com.yx.demo.model.request.SaveOrderRequest;
+import com.yx.demo.service.VideoOrderService;
+import com.yx.demo.utils.JsonData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+/**
+ * @author yangxi
+ * @version 1.0
+ */
+@RestController
+@RequestMapping("api/v1/pri/video_order")
+public class VideoOrderController {
+
+    @Autowired
+    private VideoOrderService videoOrderService;
+
+    /**
+     * 下单
+     * @param saveOrderRequest
+     * @return
+     */
+    @PostMapping("save")
+    public JsonData saveOrder(@RequestBody SaveOrderRequest saveOrderRequest, HttpServletRequest request) {
+        Integer userId = (Integer) request.getAttribute("user_id");
+        Integer videoId = saveOrderRequest.getVideoId();
+        videoOrderService.saveOrder(userId, videoId);
+        return JsonData.buildSuccess();
+    }
+
+    /**
+     * 查询用户订单列表
+     * @param request
+     * @return
+     */
+    @GetMapping("list")
+    public JsonData listOrderByUserId(HttpServletRequest request) {
+        Integer userId = (Integer) request.getAttribute("user_id");
+        List<VideoOrder> videoOrderList = videoOrderService.listOrderByUserId(userId);
+        return JsonData.buildSuccess(videoOrderList);
+    }
+
+    // 根据条件筛选用户订单
+
+}

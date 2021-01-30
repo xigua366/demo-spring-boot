@@ -1,8 +1,6 @@
-# demo-spring-boot
-spring-boot整合各类Java技术栈的示例代码
-
+### spring-boot整合各类Java技术栈的示例代码
 + 整合guava缓存示例 （已完成）
-+ 整合lombok示例
++ 整合lombok示例 （已完成）
 + 整合ehcache缓存示例
 + async异步编程示例
 + excetion统一异常处理示例
@@ -14,8 +12,8 @@ spring-boot整合各类Java技术栈的示例代码
 + 整合spring boot admin示例
 + 整合freemarker模板示例
 + 整合thymeleaf模板示例
-+ 整合mybatis示例
-+ 整合mybatis plus示例
++ 整合mybatis示例 （已完成）
++ 整合mybatis plus示例 
 + 整合spring data jpa示例
 + 整合redis示例
 + 整合mongodb示例

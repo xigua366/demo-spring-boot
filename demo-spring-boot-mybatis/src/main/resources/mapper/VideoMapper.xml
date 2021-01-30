@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yx.demo.mapper.VideoMapper">
+
+    <sql id="base_video_field">
+        id,title,summary,cover_img, price, create_time, point
+    </sql>
+
+
+    <select id="listVideo" resultType="Video">
+
+        select <include refid="base_video_field" /> from video
+
+    </select>
+
+    <select id="selectByPointAndTitleLike"  resultType="Video">
+
+        select * from video
+        <where>
+            <if test="title != null">
+                and title like concat('%', #{title,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="point != null">
+                and point=#{point,jdbcType=DOUBLE}
+            </if>
+        </where>
+
+    </select>
+
+<!--    <where> 等价于 -->
+<!--    <trim prefix="WHERE" prefixOverrides="AND |OR ">-->
+<!--        ...-->
+<!--    </trim>-->
+
+
+    <resultMap id="VideoDetailResultMap" type="Video">
+
+        <id column="id" jdbcType="INTEGER" property="id"/>
+
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="cover_img" jdbcType="VARCHAR" property="coverImg"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="point" jdbcType="DOUBLE" property="point"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+
+
+        <collection property="chapterList" ofType="Chapter">
+            <id column="chapter_id" jdbcType="INTEGER" property="id"/>
+            <result column="chapter_title" jdbcType="VARCHAR" property="title"/>
+            <result column="ordered" jdbcType="INTEGER" property="ordered"/>
+            <result column="chapter_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+
+            <collection property="episodeList" ofType="Episode">
+                <id column="episode_id" jdbcType="INTEGER" property="id"/>
+                <result column="num" jdbcType="INTEGER" property="num"/>
+                <result column="episode_title" jdbcType="VARCHAR" property="title"/>
+                <result column="episode_ordered" jdbcType="INTEGER" property="ordered"/>
+                <result column="play_url" jdbcType="VARCHAR" property="playUrl"/>
+                <result column="free" jdbcType="INTEGER" property="free"/>
+                <result column="episode_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            </collection>
+
+        </collection>
+        
+    </resultMap>
+
+
+    <select id="findDetailById" resultMap="VideoDetailResultMap">
+
+        select
+        v.id, v.title,v.summary,v.cover_img,v.price,v.point,v.create_time,
+        c.id as chapter_id, c.title as chapter_title, c.ordered,c.create_time as chapter_create_time,
+        e.id as episode_id,e.num, e.title as episode_title,e.ordered as episode_ordered,e.play_url,e.free,e.create_time as episode_create_time
+
+        from video v
+
+        left join chapter c on v.id=c.video_id
+
+        left join episode e on c.id= e.chapter_id
+
+        where v.id = #{video_id}
+        order by c.ordered,e.num asc
+
+
+    </select>
+
+    <select id="findById" resultType="Video">
+        select * from video where id=#{video_id}
+    </select>
+
+
+    <insert id="add" parameterType="Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+
+        INSERT INTO `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
+        VALUES
+        (#{title,jdbcType=VARCHAR},#{summary,jdbcType=VARCHAR},#{coverImg,jdbcType=VARCHAR},#{price,jdbcType=INTEGER},
+         #{createTime,jdbcType=TIMESTAMP},#{point,jdbcType=DOUBLE});
+
+    </insert>
+
+
+
+    <!--批量插入-->
+    <insert id="addBatch" parameterType="Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+
+        INSERT INTO `video` ( `title`, `summary`, `cover_img`, `price`, `create_time`, `point`)
+        VALUES
+
+        <foreach collection="list" item="video" separator=",">
+
+            (#{video.title,jdbcType=VARCHAR},#{video.summary,jdbcType=VARCHAR},#{video.coverImg,jdbcType=VARCHAR},
+            #{video.price,jdbcType=INTEGER},
+            #{video.createTime,jdbcType=TIMESTAMP},#{video.point,jdbcType=DOUBLE})
+
+        </foreach>
+
+    </insert>
+
+
+    <update id="updateVideo" parameterType="Video">
+
+        update video
+
+        set
+            title = #{title,jdbcType=VARCHAR},
+            summary = #{summary,jdbcType=VARCHAR},
+            cover_img = #{coverImg,jdbcType=VARCHAR},
+            price = #{price,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            point = #{point,jdbcType=DOUBLE}
+
+        where
+            id = #{id}
+
+
+    </update>
+
+
+
+
+
+    <update id="updateVideoSelective" parameterType="Video">
+
+        update video
+
+        <trim prefix="set" suffixOverrides=",">
+
+            <if test="title != null "> title = #{title,jdbcType=VARCHAR},</if>
+
+            <if test="summary != null "> summary = #{summary,jdbcType=VARCHAR},</if>
+
+            <if test="coverImg != null "> cover_img = #{coverImg,jdbcType=VARCHAR},</if>
+
+            <if test="price != null "> price = #{price,jdbcType=INTEGER},</if>
+
+            <if test="createTime !=null "> create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+
+            <!--一定要看pojo类里面的是基本数据类型，还是包装数据类型-->
+            <if test="point != null "> point = #{point,jdbcType=DOUBLE},</if>
+
+        </trim>
+
+        where
+        id = #{id}
+
+    </update>
+
+
+    <!--<delete id="deleteByCreateTimeAndPrice" parameterType="java.util.Map">-->
+    <delete id="deleteByCreateTimeAndPrice" parameterType="Map">
+
+        delete from video where create_time <![CDATA[ > ]]> #{createTime} and price <![CDATA[ >= ]]> #{price}
+
+    </delete>
+
+</mapper>
