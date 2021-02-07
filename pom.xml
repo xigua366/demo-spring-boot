@@ -30,6 +30,7 @@
 		<module>demo-spring-boot-mybatis</module>
 		<module>demo-spring-boot-aliyun-oss</module>
 		<module>demo-spring-boot-google-kaptcha</module>
+		<module>demo-spring-boot-mail</module>
 	</modules>
 
 	<repositories>
