@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: demo-spring-boot-google-kaptcha
+
+
+  #redis 配置
+  redis:
+    host: 120.78.137.97
+    port: 8000
+    password: 123456
