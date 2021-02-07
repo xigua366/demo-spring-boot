@@ -28,6 +28,7 @@
 		<module>demo-spring-boot-guava</module>
 		<module>demo-spring-boot-lombok</module>
 		<module>demo-spring-boot-mybatis</module>
+		<module>demo-spring-boot-aliyun-oss</module>
 	</modules>
 
 	<repositories>

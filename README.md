@@ -22,12 +22,15 @@
 + 整合rocketmq示例
 + 整合kafka示例
 + 整合docker示例
++ 整合阿里云oss （已完成）
 + 整合原生的servlet、filter、listener示例
 + 整合spring security示例
 + 整合spring security oauth2示例
 + 整合apache shiro示例
 + 整合jwt示例
 + 整合swagger2、swagger3
++ 整合google kaptcha验证码 （已完成）
++ 整合spring-mail发送邮件 （已完成）
 + properties属性示例
 + schedule定时调度任务示例
 + test单元测试示例

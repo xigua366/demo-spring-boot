@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: demo-spring-boot-aliyun-oss
+
+
+#阿里云OSS配置
+aliyun:
+  oss:
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    access-key-id: TLAI4G8UdoBBm78BRz1zESYb
+    access-key-secret: 0AOj0srypJYtcNdNXpjLmnpnSyyuel
+    bucket-name: xigua366-b55
