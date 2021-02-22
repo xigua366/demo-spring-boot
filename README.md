@@ -3,10 +3,14 @@
 + 整合lombok示例 （已完成）
 + 整合ehcache缓存示例
 + async异步编程示例
-+ excetion统一异常处理示例
-+ Hibernate Validator Controller层参数校验示例
-+ JsonData统一结果返回结构示例
-+ 整合mvc示例
++ 整合mvc示例 （已完成）
+  + Hibernate Validator Controller层参数校验示例 （已完成）
+  + JsonData统一结果返回结构示例 （已完成）
+  + excetion统一异常处理示例 （已完成）
+  + 增加自定义拦截器配置 （已完成）
+  + 增加自定义servlet规范的filter配置 （已完成）
+  + 增加自定义servlet规范的listener配置 （已完成）
+  + 整合原生的servlet、filter、listener示例 （已完成）
 + 整合logback日志示例
 + 整合actuator监控示例
 + 整合spring boot admin示例
@@ -23,7 +27,6 @@
 + 整合kafka示例
 + 整合docker示例
 + 整合阿里云oss （已完成）
-+ 整合原生的servlet、filter、listener示例
 + 整合spring security示例
 + 整合spring security oauth2示例
 + 整合apache shiro示例

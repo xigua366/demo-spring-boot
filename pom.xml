@@ -31,6 +31,7 @@
 		<module>demo-spring-boot-aliyun-oss</module>
 		<module>demo-spring-boot-google-kaptcha</module>
 		<module>demo-spring-boot-mail</module>
+		<module>demo-spring-boot-mvc</module>
 	</modules>
 
 	<repositories>

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 
 @Configuration
-public class SpringmvcInterceptorConfig implements WebMvcConfigurer {
+public class SpringMvcConfig implements WebMvcConfigurer {
 
 
     @Bean
@@ -22,6 +22,10 @@ public class SpringmvcInterceptorConfig implements WebMvcConfigurer {
         return new LoginInterceptor();
     }
 
+    /**
+     * Interceptor 拦截器配置
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
