@@ -26,4 +26,8 @@
 
     </select>
 
+    <select id="listOrderAll" resultType="VideoOrder">
+        select * from video_order order by create_time desc
+    </select>
+
 </mapper>

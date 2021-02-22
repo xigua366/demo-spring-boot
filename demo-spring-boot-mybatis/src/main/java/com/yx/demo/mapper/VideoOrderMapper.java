@@ -31,10 +31,16 @@ public interface VideoOrderMapper {
 
 
     /**
-     * 订单列表
+     * 用户订单列表
      * @param userId
      * @return
      */
     List<VideoOrder> listOrderByUserId(@Param("user_id") Integer userId);
+
+    /**
+     * 查询全部订单
+     * @return
+     */
+    List<VideoOrder> listOrderAll();
 
 }

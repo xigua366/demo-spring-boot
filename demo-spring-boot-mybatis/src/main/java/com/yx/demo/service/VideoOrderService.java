@@ -25,4 +25,12 @@ public interface VideoOrderService {
      * @return
      */
     List<VideoOrder> listOrderByUserId(Integer userId);
+
+    /**
+     * 分页查询全部订单
+     * @param page 第几页
+     * @param size 每天显示记录数
+     * @return
+     */
+    List<VideoOrder> pageOrderAll(int page, int size);
 }

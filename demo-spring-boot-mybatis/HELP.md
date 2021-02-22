@@ -38,11 +38,19 @@
  + Mapper.xml中的各种标签用法
     + 参考官网进行编写
     + 增删改查的标准写法
+    + 单表分页与多表关联查询分页的写法（整合pagehelper）
     + 其它辅助标签的用法
  + Mapper.java中的各种注解的用法
     + 参考官网进行编写
 + 一级/二级缓存实现、运用以及原理
++ 自定义插件的开发与spring boot的集成使用。（未完成）
 
 
 > 建议还是使用Mapper.xml方便一些，纯注解的方式开发工作量大，且没有自动提示。
     
+原生Mybatis框架没有提供分页插件的支持，需要自己基于自己使用的数据库语法去实现。
+比如MySQL数据库需要使用LIMIT语法来实现：
+select * from user where user_type = 'A' LIMIT 0,10;
+
+另外就是可以使用一些开源的分页插件来实现，比如pagehelper，使用pagehelper插件非常简单，只需要在正常的查询代码中增加如下一行代码即可：
+PageHelper.startPage(page, size);

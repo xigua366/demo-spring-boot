@@ -1,5 +1,6 @@
 package com.yx.demo.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.yx.demo.exception.MyException;
 import com.yx.demo.mapper.EpisodeMapper;
 import com.yx.demo.mapper.PlayRecordMapper;
@@ -95,5 +96,12 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     @Override
     public List<VideoOrder> listOrderByUserId(Integer userId) {
         return videoOrderMapper.listOrderByUserId(userId);
+    }
+
+    @Override
+    public List<VideoOrder> pageOrderAll(int page, int size) {
+        // 整合pagehelper非常简单，只需要在常规的代码前增加如下一行代码即可
+        PageHelper.startPage(page, size);
+        return videoOrderMapper.listOrderAll();
     }
 }

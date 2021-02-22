@@ -1,5 +1,6 @@
 package com.yx.demo.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.yx.demo.model.entity.VideoOrder;
 import com.yx.demo.model.request.SaveOrderRequest;
 import com.yx.demo.service.VideoOrderService;
@@ -46,6 +47,18 @@ public class VideoOrderController {
         return JsonData.buildSuccess(videoOrderList);
     }
 
-    // 根据条件筛选用户订单
+    /**
+     * 分页查询全部订单列表
+     * @param page 第几页
+     * @param size 每页记录数
+     * @return
+     */
+    @GetMapping("page_all")
+    public JsonData pageOrderAll(int page, int size) {
+        List<VideoOrder> videoOrderList = videoOrderService.pageOrderAll(page, size);
+        return JsonData.buildSuccess(new PageInfo<>(videoOrderList));
+    }
+
+    // 根据条件筛选用户订单并分页
 
 }
