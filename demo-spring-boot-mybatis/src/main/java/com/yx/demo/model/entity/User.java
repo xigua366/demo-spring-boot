@@ -1,5 +1,7 @@
 package com.yx.demo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
@@ -19,10 +21,12 @@ public class User {
 
     private String pwd;
 
+    @JsonProperty("head_img")
     private String headImg;
 
     private String phone;
 
+    @JsonProperty("create_time")
     private Date createTime;
 
     @Override

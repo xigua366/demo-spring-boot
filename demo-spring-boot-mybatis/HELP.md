@@ -25,7 +25,8 @@
   + localhost:8080/api/v1/pri/video_order/save
 + 订单列表查询（不分页）
     + localhost:8080/api/v1/pri/video_order/list
-
++ 分页查询全部订单列表
+    + localhost:8080/api/v1/pri/video_order/page_all
 
 ### mybatis技术栈主要功能点
 + 原生各种配置
