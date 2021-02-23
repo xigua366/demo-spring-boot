@@ -35,7 +35,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         //拦截全部
         registry.addInterceptor(loginInterceptor()).addPathPatterns("/api/v1/pri/*/*/**")
                 //不拦截哪些路径   斜杠一定要加
-                .excludePathPatterns("/api/v1/pri/user/login","/api/v1/pri/user/register", "/test/**", "/validator/test/**");
+                .excludePathPatterns("/api/v1/pri/user/login","/api/v1/pri/user/register", "/test/**", "/validator/test/**", "/upload/test/**");
 
         // 好的编程习惯，不覆盖父类中的逻辑
         WebMvcConfigurer.super.addInterceptors(registry);

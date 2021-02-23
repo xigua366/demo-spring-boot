@@ -7,6 +7,8 @@
 + 增加自定义servlet规范的listener配置 （完成）不常用，一帮用spring boot自己的启动扩展xx接口
 + 整合原生的servlet、filter、listener示例（完成）
 + Controller层aop配置示例 （完成）不常用
++ 文件上传（已完成）
++ 文件下载（未完成）不常用，下载的话一般直接挂上oss的地址,要么就是下载工程目录下的固定的静态文件，比如下载导出Excel文档等
 
 
 ## Validator使用的一些资料：

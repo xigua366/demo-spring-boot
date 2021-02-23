@@ -6,14 +6,14 @@
 + 整合mvc示例 （已完成）
   + Hibernate Validator Controller层参数校验示例 （已完成）
   + JsonData统一结果返回结构示例 （已完成）
-  + excetion统一异常处理示例 （已完成）
+  + exception统一异常处理示例 （已完成）
   + 增加自定义拦截器配置 （已完成）
   + 增加自定义servlet规范的filter配置 （已完成）
   + 增加自定义servlet规范的listener配置 （已完成）
   + 整合原生的servlet、filter、listener示例 （已完成）
 + 整合logback日志示例
-+ 整合actuator监控示例
 + 整合spring boot admin示例
+  + 整合actuator监控示例
 + 整合freemarker模板示例
 + 整合thymeleaf模板示例
 + 整合mybatis示例 （已完成）
