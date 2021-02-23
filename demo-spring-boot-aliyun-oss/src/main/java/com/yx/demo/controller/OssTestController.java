@@ -1,13 +1,9 @@
 package com.yx.demo.controller;
 
-import com.yx.demo.model.request.UploadUserImageRequest;
 import com.yx.demo.service.FileService;
 import com.yx.demo.util.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -30,9 +26,7 @@ public class OssTestController {
      * @return
      */
     @PostMapping(value = "upload")
-    public JsonData uploadHeaderImg(@RequestPart("file") MultipartFile file, UploadUserImageRequest uploadUserImageRequest){
-
-        System.out.println(uploadUserImageRequest.getImageName());
+    public JsonData uploadHeaderImg(@RequestPart("file") MultipartFile file, @RequestParam(value = "image_name", required = false) String imageName){
 
         String result = fileService.uploadUserHeadImg(file);
 
