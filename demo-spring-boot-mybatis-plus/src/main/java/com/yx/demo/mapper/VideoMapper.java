@@ -1,6 +1,8 @@
 package com.yx.demo.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yx.demo.model.entity.Video;
 import com.yx.demo.model.request.DeleteVideoRequest;
 import org.apache.ibatis.annotations.Mapper;
@@ -70,6 +72,13 @@ public interface VideoMapper extends BaseMapper<Video> {
      */
     int updateVideoSelective(Video video);
 
+    /**
+     * xml sql更新视频对象，测试乐观锁版本号
+     * @param video
+     * @return
+     */
+    int updateVideoXmlSql(Video video);
+
 
     /**
      * 根据时间和价格删除
@@ -77,5 +86,13 @@ public interface VideoMapper extends BaseMapper<Video> {
      * @return
      */
     int deleteByCreateTimeAndPrice(DeleteVideoRequest deleteVideoRequest);
+
+    /**
+     * 分页查询视频列表
+     * @param pageInfo 分页信息
+     * @param price 查询条件: 视频价格
+     * @return
+     */
+    IPage<Video> pageVideoXmlSql(Page<?> pageInfo, @Param("price") int price);
 
 }

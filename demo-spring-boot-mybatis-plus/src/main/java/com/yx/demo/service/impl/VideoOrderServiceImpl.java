@@ -116,6 +116,7 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     public IPage<VideoOrder> pageOrderAll(int page, int size) {
 //        return videoOrderMapper.listOrderAll();
         Page<VideoOrder> pageParam = new Page<>(page, size);
+        // 如果没有where条件，构建一个空的QueryWrapper即可
         IPage<VideoOrder> videoOrderPage = videoOrderMapper.selectPage(pageParam, new QueryWrapper<>());
         return videoOrderPage;
     }

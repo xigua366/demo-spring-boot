@@ -28,10 +28,17 @@
 + 分页查询全部订单列表
   + localhost:8080/api/v1/pri/video_order/page_all
 
+### 乐观锁测试请求
++ localhost:8080/test/version/video/51
++ localhost:8080/test/version/xmlsql/video/51
 
 ## mybatis plus主要常用功能点
 + BaseMapper操作单表的各种api使用
 + 多种Wapper包装器查询功能
+  + QueryWapper
+  + UpdateWapper
+  + LambdaQueryWrapper
+  + LambdaQueryWrapper
 + 查询性能优化-指定select字段查询
 + 逻辑删除支持 （根据实际情况选择使用）
 + 常用插件

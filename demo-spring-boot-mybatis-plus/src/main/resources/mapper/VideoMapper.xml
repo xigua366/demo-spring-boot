@@ -167,11 +167,48 @@
     </update>
 
 
+    <update id="updateVideoXmlSql" parameterType="Video">
+
+        update video
+
+        <trim prefix="set" suffixOverrides=",">
+
+            <if test="title != null "> title = #{title,jdbcType=VARCHAR},</if>
+
+            <if test="summary != null "> summary = #{summary,jdbcType=VARCHAR},</if>
+
+            <if test="coverImg != null "> cover_img = #{coverImg,jdbcType=VARCHAR},</if>
+
+            <if test="price != null "> price = #{price,jdbcType=INTEGER},</if>
+
+            <if test="createTime !=null "> create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+
+            <!--一定要看pojo类里面的是基本数据类型，还是包装数据类型-->
+            <if test="point != null "> point = #{point,jdbcType=DOUBLE},</if>
+
+            <!--
+            <if test="version != null "> version = #{version,jdbcType=INTEGER},</if>
+            -->
+
+            <if test="deleted != null "> deleted = #{deleted,jdbcType=INTEGER},</if>
+
+        </trim>
+
+        where
+        id = #{id} and version = #{version} and deleted = 0
+
+    </update>
+
     <!--<delete id="deleteByCreateTimeAndPrice" parameterType="java.util.Map">-->
     <delete id="deleteByCreateTimeAndPrice" parameterType="Map">
 
         delete from video where create_time <![CDATA[ > ]]> #{createTime} and price <![CDATA[ >= ]]> #{price}
 
     </delete>
+
+
+    <select id="pageVideoXmlSql" resultType="Video">
+        select * from video where price>#{price}
+    </select>
 
 </mapper>

@@ -1,7 +1,10 @@
 package com.yx.demo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yx.demo.mapper.VideoBannerMapper;
 import com.yx.demo.mapper.VideoMapper;
 import com.yx.demo.model.entity.Video;
@@ -24,6 +27,11 @@ public class VideoServiceImpl implements VideoService {
 
     @Autowired
     private VideoBannerMapper videoBannerMapper;
+
+    @Override
+    public Video getVideo(Integer videoId) {
+        return videoMapper.selectById(videoId);
+    }
 
     @Override
     public List<Video> listVideo() {
@@ -79,9 +87,31 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public int deleteByCreateTimeAndPrice(DeleteVideoRequest deleteVideoRequest) {
-//        return videoMapper.deleteByCreateTimeAndPrice(deleteVideoRequest);
-        return videoMapper.delete(new UpdateWrapper<Video>().gt("create_time", deleteVideoRequest.getCreateTime()).ge("price", deleteVideoRequest.getPrice()));
+    public int updateVideoXmlSql(Video video) {
+//        return videoMapper.updateVideoSelective(video);
+        return videoMapper.updateVideoXmlSql(video);
     }
 
+    @Override
+    public int deleteByCreateTimeAndPrice(DeleteVideoRequest deleteVideoRequest) {
+//        return videoMapper.deleteByCreateTimeAndPrice(deleteVideoRequest);
+//        return videoMapper.delete(new UpdateWrapper<Video>().gt("create_time", deleteVideoRequest.getCreateTime()).ge("price", deleteVideoRequest.getPrice()));
+        return videoMapper.delete(new LambdaUpdateWrapper<Video>().gt(Video::getCreateTime, deleteVideoRequest.getCreateTime()).ge(Video::getPrice, deleteVideoRequest.getPrice()));
+    }
+
+    @Override
+    public int deleteVideo(Video video) {
+        return videoMapper.deleteById(video.getId());
+    }
+
+    @Override
+    public IPage<Video> pageVideoXmlSql(int page, int size) {
+
+        Page<Video> pageInfo = new Page<>(page, size);
+
+        // 表示1块钱
+        int price = 100;
+
+        return videoMapper.pageVideoXmlSql(pageInfo, price);
+    }
 }

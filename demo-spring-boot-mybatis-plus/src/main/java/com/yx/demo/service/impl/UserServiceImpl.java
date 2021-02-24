@@ -1,5 +1,6 @@
 package com.yx.demo.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yx.demo.mapper.UserMapper;
 import com.yx.demo.model.entity.User;
@@ -39,8 +40,12 @@ public class UserServiceImpl implements UserService {
     public String findByPhoneAndPwd(String phone, String pwd) {
 
 //        User user = userMapper.findByPhoneAndPwd(phone, CommonUtils.MD5(pwd));
-        User user = userMapper.selectOne(new QueryWrapper<User>().eq("phone", phone).eq("pwd", CommonUtils.MD5(pwd)));
+//        User user = userMapper.selectOne(new QueryWrapper<User>().eq("phone", phone).eq("pwd", CommonUtils.MD5(pwd)));
+//        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getPhone, phone).eq(User::getPwd, CommonUtils.MD5(pwd)));
 
+        // 只查询id、name、head_img三个字段
+        // User user = userMapper.selectOne(new QueryWrapper<User>().select("id", "name", "head_img").eq("phone", phone).eq("pwd", CommonUtils.MD5(pwd)));
+        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().select(User::getId, User::getName, User::getHeadImg).eq(User::getPhone, phone).eq(User::getPwd, CommonUtils.MD5(pwd)));
         if(user == null){
             return null;
 

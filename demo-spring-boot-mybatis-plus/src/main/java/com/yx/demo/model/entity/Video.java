@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +23,7 @@ import java.util.List;
  *   `price` int(11) DEFAULT NULL COMMENT '价格,分',
  *   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
  *   `point` double(11,2) DEFAULT '8.70' COMMENT '默认8.7，最高10分',
+ *   `version` int(11) NOT NULL DEFAULT 1 COMMENT '版本号',
  *   PRIMARY KEY (`id`) USING BTREE
  * ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
  * </p>
@@ -75,6 +77,17 @@ public class Video implements Serializable {
      * 默认8.7，最高10分
      */
     private Double point;
+
+    /**
+     * 乐观锁 版本号
+     */
+    @Version
+    private Integer version;
+
+    /**
+     * 逻辑删除字段 0:未删除  1:已删除
+     */
+    private Integer deleted;
 
     /**
      * 非数据库字段
@@ -137,6 +150,22 @@ public class Video implements Serializable {
 
     public void setPoint(Double point) {
         this.point = point;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
     }
 
     public List<Chapter> getChapterList() {
