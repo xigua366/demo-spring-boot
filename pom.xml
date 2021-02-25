@@ -34,6 +34,7 @@
 		<module>demo-spring-boot-google-kaptcha</module>
 		<module>demo-spring-boot-mail</module>
 		<module>demo-spring-boot-mvc</module>
+		<module>demo-spring-boot-redis</module>
 	</modules>
 
 	<repositories>

@@ -20,6 +20,7 @@
 + 整合mybatis plus示例 
 + 整合spring data jpa示例
 + 整合redis示例
+  + 整合redisson示例  
 + 整合mongodb示例
 + 整合es示例
 + 整合rabbitmq示例

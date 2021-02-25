@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yx.demo.mapper.CouponMapper">
+
+    <select id="selectOne" resultType="Coupon">
+
+        select  * from coupon where id = #{couponId} and category = #{category}
+
+    </select>
+
+    <select id="listAllCoupon" resultType="Coupon">
+
+        select  * from coupon where publish = 'PUBLISH' and category = 'PROMOTION'
+
+    </select>
+
+    <!--扣减库存-->
+    <update id="reduceStock">
+        update coupon set stock=stock-1 where id = #{couponId} and stock > 0
+    </update>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yx.demo.mapper.CouponRecordMapper">
+
+    <insert id="insert" parameterType="CouponRecord">
+
+        INSERT INTO `coupon_record`(`coupon_id`, `create_time`, `use_state`, `user_id`, `user_name`, `coupon_title`, `start_time`, `end_time`, `order_id`, `price`, `condition_price`)
+        VALUES (#{couponId}, #{createTime}, #{useState}, #{userId}, #{userName}, #{couponTitle}, #{startTime}, #{endTime}, #{orderId}, #{price}, #{conditionPrice});
+
+    </insert>
+
+    <select id="selectCount" resultType="_int">
+
+        select count(id) from coupon_record where coupon_id = #{couponId} and user_id = #{userId}
+
+    </select>
+
+</mapper>
