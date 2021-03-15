@@ -30,7 +30,15 @@ public class RabbitMQConfig {
      * @return
      */
     @Bean
-    public Exchange orderExchange(){
+    public Exchange orderExchange() {
+
+        // 定义一个fanout类型的交换机
+//        ExchangeBuilder.fanoutExchange(EXCHANGE_NAME).durable(true).build();
+
+        // 定义一个direct类型的交换机
+//        ExchangeBuilder.directExchange(EXCHANGE_NAME).durable(true).build();
+
+        // 定义一个topic类型的交换机
         return ExchangeBuilder.topicExchange(EXCHANGE_NAME).durable(true).build();
     }
 

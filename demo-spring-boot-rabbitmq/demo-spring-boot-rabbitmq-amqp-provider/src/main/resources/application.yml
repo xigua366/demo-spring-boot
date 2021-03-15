@@ -17,8 +17,8 @@ spring:
     #开启消息二次确认，交换机到队列的可靠性投递
     publisher-returns: true
     #为true,则交换机处理消息到路由失败，则会返回给生产者
-    template:
-      mandatory: true
+#    template: (如果是new出来的RabbitTemplate，需要单独给这个RabbitTemplate对象进行设置)
+#      mandatory: true
   profiles:
     active: dev
 

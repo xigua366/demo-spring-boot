@@ -15,8 +15,9 @@ import java.util.Map;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/other")
+public class OtherController {
+
 
     @Autowired
     private OrderMQSender orderMQSender;
@@ -26,17 +27,16 @@ public class OrderController {
 
     /**
      *
-     * POST http://localhost:8090/order/createOrder
+     * POST http://localhost:8090/other/testConfirmCallback
      *
      * @return
      * @throws Exception
      */
-    @PostMapping("/createOrder")
-    public Map<String, Object> createOrder() throws Exception {
-
+    @PostMapping("/testConfirmCallback")
+    public Map<String, Object> testConfirmCallback() throws Exception {
         String orderNo = orderService.createOrder();
 
-        orderMQSender.sendOrderMsg(orderNo);
+        orderMQSender.testConfirmCallback(orderNo);
 
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put("code", 0);
@@ -45,4 +45,23 @@ public class OrderController {
         return returnMap;
     }
 
+    /**
+     *
+     * POST http://localhost:8090/other/testReturnCallback
+     *
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/testReturnCallback")
+    public Map<String, Object> testReturnCallback() throws Exception {
+        String orderNo = orderService.createOrder();
+
+        orderMQSender.testReturnCallback(orderNo);
+
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put("code", 0);
+        returnMap.put("msg", "成功");
+        returnMap.put("data", orderNo);
+        return returnMap;
+    }
 }
