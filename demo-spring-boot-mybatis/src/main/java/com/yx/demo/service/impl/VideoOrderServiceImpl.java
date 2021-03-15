@@ -102,6 +102,7 @@ public class VideoOrderServiceImpl implements VideoOrderService {
     public List<VideoOrder> pageOrderAll(int page, int size) {
         // 整合pagehelper非常简单，只需要在常规的代码前增加如下一行代码即可
         PageHelper.startPage(page, size);
-        return videoOrderMapper.listOrderAll();
+        List<VideoOrder> list = videoOrderMapper.listOrderAll();
+        return list;
     }
 }

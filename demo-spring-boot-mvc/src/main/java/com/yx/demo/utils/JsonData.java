@@ -24,7 +24,7 @@ public class JsonData {
 
     public  JsonData(){}
 
-    public  JsonData(Integer code, Object data, String msg){
+    public JsonData(Integer code, Object data, String msg){
         this.code = code;
         this.data = data;
         this.msg = msg;

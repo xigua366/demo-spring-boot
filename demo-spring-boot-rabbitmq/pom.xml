@@ -5,15 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.yx.demo</groupId>
+		<artifactId>demo-spring-boot</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../../demo-spring-boot</relativePath>
 	</parent>
 
-	<groupId>com.yx.demo</groupId>
-	<artifactId>demo-spring-boot</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<artifactId>demo-spring-boot-rabbitmq</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -25,17 +23,9 @@
 	</properties>
 
 	<modules>
-		<module>demo-spring-boot-guava</module>
-		<module>demo-spring-boot-lombok</module>
-		<module>demo-spring-boot-mybatis</module>
-		<module>demo-spring-boot-mybatis-plus</module>
-		<module>demo-spring-boot-mybatis-plus-generator</module>
-		<module>demo-spring-boot-aliyun-oss</module>
-		<module>demo-spring-boot-google-kaptcha</module>
-		<module>demo-spring-boot-mail</module>
-		<module>demo-spring-boot-mvc</module>
-		<module>demo-spring-boot-redis</module>
-		<module>demo-spring-boot-rabbitmq</module>
+		<module>demo-spring-boot-rabbitmq-amqp-consumer</module>
+		<module>demo-spring-boot-rabbitmq-amqp-provider</module>
+		<module>demo-spring-boot-rabbitmq-sample</module>
 	</modules>
 
 	<repositories>
