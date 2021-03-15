@@ -23,7 +23,7 @@
   + 整合redisson示例  
 + 整合mongodb示例
 + 整合es示例
-+ 整合rabbitmq示例
++ 整合rabbitmq示例 （已完成）
 + 整合rocketmq示例
 + 整合kafka示例
 + 整合docker示例

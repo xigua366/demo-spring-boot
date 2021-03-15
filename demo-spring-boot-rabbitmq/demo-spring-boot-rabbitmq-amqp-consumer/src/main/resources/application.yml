@@ -1,0 +1,27 @@
+
+
+server:
+  port: 8083
+
+#消息队列
+spring:
+  rabbitmq:
+    host: 120.78.137.97
+    port: 5672
+    virtual-host: /dev
+    username: admin
+    password: password
+
+    #消息手工确认ACK
+    listener:
+      simple:
+        acknowledge-mode: manual
+      direct:
+        acknowledge-mode: manual
+  profiles:
+    active: dev
+
+
+
+
+

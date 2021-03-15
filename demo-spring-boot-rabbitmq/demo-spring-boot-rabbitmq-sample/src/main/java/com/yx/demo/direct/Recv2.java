@@ -43,7 +43,13 @@ public class Recv2 {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
 
-                System.out.println("body="+new String(body,"utf-8"));
+                System.out.println("consumerTag:" + consumerTag + ", body="+new String(body,"utf-8"));
+                System.out.println("envelope:" + envelope);
+
+                StringBuilder sb = new StringBuilder();
+                properties.appendPropertyDebugStringTo(sb);
+                System.out.println("properties:" + sb);
+                System.out.println("messageId:" + properties.getMessageId());
 
                 //手工确认消息消费，不是多条确认
                 channel.basicAck(envelope.getDeliveryTag(),false);

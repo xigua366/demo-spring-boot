@@ -1,9 +1,7 @@
 package com.yx.demo.direct;
 
-import com.rabbitmq.client.BuiltinExchangeType;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.*;
+import com.rabbitmq.client.impl.AMQBasicProperties;
 
 import java.nio.charset.StandardCharsets;
 
@@ -40,6 +38,7 @@ public class Send {
             // 连续发送三条消息，分别设置不同的路由键
             channel.basicPublish(EXCHANGE_NAME,"errorRoutingKey",null, error.getBytes(StandardCharsets.UTF_8));
             channel.basicPublish(EXCHANGE_NAME,"infoRoutingKey",null, info.getBytes(StandardCharsets.UTF_8));
+            // 可以创建一个BasicProperties对象，然后设置到第三个参数，发送给消费方（里面可以设置messageId等属性，比如可以用UUID作为messageId的值）
             channel.basicPublish(EXCHANGE_NAME,"debugRoutingKey",null, debug.getBytes(StandardCharsets.UTF_8));
 
 

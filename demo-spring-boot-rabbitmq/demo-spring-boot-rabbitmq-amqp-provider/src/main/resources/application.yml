@@ -1,0 +1,28 @@
+
+
+server:
+  port: 8090
+
+#消息队列
+spring:
+  rabbitmq:
+    host: 120.78.137.97
+    port: 5672
+    virtual-host: /dev
+    username: admin
+    password: password
+    #开启消息二次确认,生产者到broker的交换机
+    publisher-confirm-type: correlated
+
+    #开启消息二次确认，交换机到队列的可靠性投递
+    publisher-returns: true
+    #为true,则交换机处理消息到路由失败，则会返回给生产者
+    template:
+      mandatory: true
+  profiles:
+    active: dev
+
+
+
+
+
