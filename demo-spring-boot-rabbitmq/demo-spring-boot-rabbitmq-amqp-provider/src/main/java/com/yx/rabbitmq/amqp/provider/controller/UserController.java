@@ -28,7 +28,11 @@ public class UserController {
 
     /**
      * POST http://localhost:8090/user/register
-     *
+     * {
+     *     "phone":"13826431149",
+     *     "pwd":"123456",
+     *     "name":"李四"
+     * }
      *
      * 用户注册
      * @return
