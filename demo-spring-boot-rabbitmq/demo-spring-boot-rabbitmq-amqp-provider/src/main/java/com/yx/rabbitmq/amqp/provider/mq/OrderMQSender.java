@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
+ * 订单业务mq消息发送
  * @author yangxi
  * @version 1.0
  */

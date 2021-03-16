@@ -10,22 +10,20 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * 订单消息消费方监听器
+ * 用户业务死信队列中的消息消费
+ * @author yangxi
+ * @version 1.0
  */
-// @RabbitListener直接放在方法上即可，不需要放在类上，参考：https://blog.csdn.net/koubi1234/article/details/89676010
-// @RabbitListener(queues = RabbitMQConfig.QUEUE)
 @Component
 @Slf4j
-public class OrderMQListener {
+public class DeadUserMQListener {
 
-    @RabbitListener(queues = RabbitMQConstant.ORDER_QUEUE)
+    @RabbitListener(queues = RabbitMQConstant.DEAD_USER_QUEUE_NAME)
     @RabbitHandler
     public void messageHandler(String body, Message message, Channel channel) throws IOException {
 
         long msgTag = message.getMessageProperties().getDeliveryTag();
-        System.out.println("msgTag="+msgTag);
-        System.out.println("message="+message.toString());
-        System.out.println("订单业务消息，body="+body);
+        System.out.println("用户死信队列消息，body="+body);
 
         try {
             // try里面消费消息，执行本地业务方法，一般是要用一个本地事务保证原子性
@@ -46,5 +44,4 @@ public class OrderMQListener {
         }
 
     }
-
 }

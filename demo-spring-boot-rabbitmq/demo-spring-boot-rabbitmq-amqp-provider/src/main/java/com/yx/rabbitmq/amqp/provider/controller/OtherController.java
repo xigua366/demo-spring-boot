@@ -2,13 +2,11 @@ package com.yx.rabbitmq.amqp.provider.controller;
 
 import com.yx.rabbitmq.amqp.provider.mq.OrderMQSender;
 import com.yx.rabbitmq.amqp.provider.service.OrderService;
+import com.yx.rabbitmq.amqp.provider.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author yangxi
@@ -33,16 +31,12 @@ public class OtherController {
      * @throws Exception
      */
     @PostMapping("/testConfirmCallback")
-    public Map<String, Object> testConfirmCallback() throws Exception {
+    public JsonData testConfirmCallback() throws Exception {
         String orderNo = orderService.createOrder();
 
         orderMQSender.testConfirmCallback(orderNo);
 
-        Map<String, Object> returnMap = new HashMap<>();
-        returnMap.put("code", 0);
-        returnMap.put("msg", "成功");
-        returnMap.put("data", orderNo);
-        return returnMap;
+        return JsonData.buildSuccess(orderNo);
     }
 
     /**
@@ -53,15 +47,11 @@ public class OtherController {
      * @throws Exception
      */
     @PostMapping("/testReturnCallback")
-    public Map<String, Object> testReturnCallback() throws Exception {
+    public JsonData testReturnCallback() throws Exception {
         String orderNo = orderService.createOrder();
 
         orderMQSender.testReturnCallback(orderNo);
 
-        Map<String, Object> returnMap = new HashMap<>();
-        returnMap.put("code", 0);
-        returnMap.put("msg", "成功");
-        returnMap.put("data", orderNo);
-        return returnMap;
+        return JsonData.buildSuccess(orderNo);
     }
 }
